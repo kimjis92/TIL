@@ -36,38 +36,30 @@
 
 <section class="mbr-section form3 cid-rQOCn2yQqz" id="form3-4">
   <div class="container">
-        <h2 class="align-center pb-2 mbr-fonts-style display-5">지역</h2>
-        <div class="row py-2 justify-content-center">
-            <div class="col-12 col-lg-6  col-md-8 ">
-                    <!-- <input type="hidden" name="email" data-form-email="true" value="g7+EAUMN/IKw5y3I0HTxLBhqDNGiAqPOMJK9P0tBoX/Hp/xWzc5IGJwhSuol1vwDt2mflVV0p2BpJef072EM4Jwf9ICKs1tSRgi9XvGS3wPURhrPqer6BQwOen2Lw2AN"> -->
-                    <div class="dragArea row">
-                        <!---Formbuilder Form--->
-                        <form action="{% url 'result' %}" method="POST" class="mbr-form form-with-styler">
-                        {% csrf_token %}
-                          <input type="text" name="input_location" required="required" class="form-control display-7" id="name-form1-k">
-
-                        <div class="container">
-                          <br>
-                          <h2 class="align-center pb-2 mbr-fonts-style display-5">카테고리</h2>
-                            <div class="row py-2 justify-content-center">
-                                <div class="col-12 col-lg-6  col-md-8 ">
-                                    <!---Formbuilder Form--->
-                                    <div class="dragArea row">
-                                      <input type="text" name="input_category" required="required" class="form-control display-7" id="name-form1-k">
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div class="row py-2 justify-content-center">
-                                        <input type="submit" value="검색" >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </form><!---Formbuilder Form--->
-                    </div>
+    <h2 class="align-center pb-2 mbr-fonts-style display-5">지역</h2>
+    <div class="row py-2 justify-content-center">
+      <div class="dragArea row">
+        <form action="{% url 'result' %}" method="POST" class="mbr-form form-with-styler">
+        {% csrf_token %}
+        <input type="text" name="input_location" required="required" class="form-control display-7" id="name-form1-k">
+        <div class="container">
+        <br>
+        <h2 class="align-center pb-2 mbr-fonts-style display-5">카테고리</h2>
+          <div class="row py-2 justify-content-center">
+            <div class="dragArea row">
+              <input type="text" name="input_category" required="required" class="form-control display-7" id="name-form1-k">
+            </div>
+              <div class="container">
+                <div class="row py-2 justify-content-center">
+                  <input type="submit" value="검색" >
+                </div>
               </div>
           </div>
+        </div>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="mbr-section form3 cid-rQODtlWL1J" id="form3-5">

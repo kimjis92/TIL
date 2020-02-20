@@ -5,9 +5,15 @@ from selenium.webdriver.common.keys import Keys
 import pandas as pd
 import numpy as np
 import time
+class s_info:
+    def __init__(self,store,score,review,lin):
+        self.store = store
+        self.score = score
+        self.review = review
+        self.lin = lin
 
 def crawling_result(keyword):
-    driver = webdriver.Chrome(executable_path='(driver) chromedriver.exe')
+    driver = webdriver.Chrome('/usr/local/bin/chromedriver')
     url= 'https://map.kakao.com/'
     driver.get(url)
 
@@ -17,7 +23,11 @@ def crawling_result(keyword):
     driver.find_element_by_name('q').send_keys(loc_name+food_name)
     driver.find_element_by_xpath("//button[@id='search.keyword.submit']").send_keys(Keys.ENTER)
     time.sleep(1)
-
+    time.sleep(1)
+    qwer=driver.find_elements_by_class_name('label')
+    qwer[3].send_keys(Keys.ENTER)
+    time.sleep(1)
+    
     # 1) 가게 이름
     store_name = driver.find_elements_by_class_name('link_name')
     store_list = []
@@ -32,7 +42,17 @@ def crawling_result(keyword):
     review = driver.find_elements_by_class_name('review')
     review_list=[]
     for i in review:
-        review_list.append(i.text)
+        s = i.text
+        review_list.append(int(s[3:]))
+
+    # 4) 링크
+    store_link = 'https://www.google.com/search?q='
+    slink_lst = []
+    for i in store_list:
+        store_link = 'https://www.google.com/search?q='
+        store_link = store_link + i
+        store_link = store_link.replace(' ','+')
+        slink_lst.append(store_link)
 
     driver.close()
     driver.quit()
@@ -42,6 +62,12 @@ def crawling_result(keyword):
 
     result_list=[]
     for i in range(15):
-        result_list.append([store_list[i], score_list[i], review_list[i]])
+        result_list.append([store_list[i], score_list[i], review_list[i],slink_lst[i]])
+    result_list = sorted(result_list,key=lambda x:x[2],reverse=True)
 
-    return result_list
+    r_lst = []
+    for a in result_list:
+        r_lst.append(s_info(a[0],a[1],a[2],a[3]))
+
+    # print(result_list[0].store)
+    return r_lst
